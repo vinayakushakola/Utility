@@ -10,6 +10,7 @@ namespace ConsoleApp
         {
             Console.WriteLine("================== Utility ===================");
             StartApp.LoadApp();
+            
         }
     }
 }

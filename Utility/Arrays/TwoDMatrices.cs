@@ -175,27 +175,23 @@ namespace Utility.Arrays
             #endregion
         }
 
-        /// <summary>
-        /// You are given two integer matrices A(having M X N size) and B(having N X P). 
-        /// You have to multiply matrix A with B and return the resultant matrix. (i.e. return the matrix AB).
-        /// </summary>
-        /// <param name="A"></param>
-        /// <param name="B"></param>
-        /// <returns></returns>
-        public static List<List<int>> MatrixMultiplication(List<List<int>> A, List<List<int>> B)
+        public static List<List<int>> SquareMatrixMultiplication(List<List<int>> A, List<List<int>> B)
         {
             List<List<int>> mat = new List<List<int>>();
-            List<int> list = new List<int>();
             for (int i = 0; i < A.Count; i++)
             {
-                for (int j = 0; j < A[0].Count; j++)
+                List<int> list = new List<int>();
+                for (int j = 0; j < B[0].Count; j++)
                 {
-                    for (int k = 0; k < A[0].Count; k++)
+                    for (int k = 0; k < B[0].Count; k++)
                     {
-                       list[i] += A[i][k] * B[k][j];
+                        if (k == 0)
+                            list.Add(A[i][k] * B[k][j]);
+                        else
+                            list[k + j - 1] += A[i][k] * B[k][j];
                     }
-                    mat.Add(list);
                 }
+                mat.Add(list);
             }
             return mat;
             #region Input
@@ -209,6 +205,216 @@ namespace Utility.Arrays
             //    Console.WriteLine();
             //}
             #endregion
+        }
+
+        /// <summary>
+        /// You are given two integer matrices A(having M X N size) and B(having N X P). 
+        /// You have to multiply matrix A with B and return the resultant matrix. (i.e. return the matrix AB).
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
+        public static List<List<int>> MatrixMultiplication(List<List<int>> A, List<List<int>> B)
+        {
+            List<List<int>> mat = new List<List<int>>();
+            for (int i = 0; i < A.Count; i++)
+            {
+                List<int> list = new List<int>();
+                for (int j = 0; j < B[0].Count; j++)
+                {
+                    for (int k = 0; k < A.Count; k++)
+                    {
+                        if (k==0)
+                            list.Add(A[i][k] * B[k][j]);
+                        else
+                            list[k+j-1] += A[i][k] * B[k][j];
+                    }
+                }
+                mat.Add(list);
+            }
+            return mat;
+            #region Input
+            //List<List<int>> A = new List<List<int>>() { new List<int> { 1, 2 }, new List<int> { 3, 4 } };
+            //List<List<int>> B = new List<List<int>>() { new List<int> { 5, 6 }, new List<int> { 7, 8 } };
+            //List<List<int>> op = TwoDMatrices.MatrixMultiplication(A, B);
+            //foreach (var lstItems in op)
+            //{
+            //    foreach (var item in lstItems)
+            //        Console.Write(item + " ");
+            //    Console.WriteLine();
+            //}
+            #endregion
+        }
+
+        /// <summary>
+        /// You are given two integer matrices A and B having same size(Both having same number of 
+        /// rows (N) and columns (M)). You have to subtract matrix A from B and return the resultant 
+        /// matrix. (i.e. return the matrix A - B).
+        /// If X and Y are two matrices of the same order(same dimensions). Then X - Y is a matrix of 
+        /// the same order as X and Y and its elements are obtained by subtracting the elements of Y 
+        /// from the corresponding elements of X.Thus if Z = [z[i][j]] = X - Y, then[z[i][j]] = [x[i][j]] – [y[i][j]]. 6minutes
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
+        public static List<List<int>> MatrixSubtraction(List<List<int>> A, List<List<int>> B)
+        {
+            int N = A.Count;
+            int M = A[0].Count;
+            List<List<int>> mat = new List<List<int>>();
+            for (int i = 0; i < N; i++)
+            {
+                List<int> list = new List<int>();
+                for (int j = 0; j < M; j++)
+                {
+                    list.Add(A[i][j] - B[i][j]);
+                }
+                mat.Add(list);
+            }
+            return mat;
+        }
+
+        /// <summary>
+        /// You are given a square matrix A, you have to return another matrix which is the transpose of A.
+        /// NOTE: Transpose of a matrix A is defined as - AT[i][j] = A[j][i] ; Where 1 ≤ i ≤ col and 1 ≤ j ≤ row
+        /// </summary>
+        /// <param name="A"></param>
+        /// <returns></returns>
+        public static List<List<int>> SquareMatrixTranspose(List<List<int>> A)
+        {
+            int N = A.Count;
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j <= i; j++)
+                {
+                    int temp = A[i][j];
+                    A[i][j] = A[j][i];
+                    A[j][i] = temp;
+                }
+            }
+            return A;
+        }
+
+        /// <summary>
+        /// You are given a matrix A, you have to return another matrix which is the transpose of A.
+        /// NOTE: Transpose of a matrix A is defined as - AT[i][j] = A[j][i] ; Where 1 ≤ i ≤ col and 1 ≤ j ≤ row
+        /// </summary>
+        /// <param name="A"></param>
+        /// <returns></returns>
+        public static List<List<int>> MatrixTranspose(List<List<int>> A)
+        {
+            int N = A.Count;
+            int M = A[0].Count;
+            List<List<int>> mat = new List<List<int>>();
+            for (int i = 0; i < M; i++)
+            {
+                List<int> l = new List<int>();
+                for (int j = 0; j < N; j++)
+                {
+                    l.Add(A[j][i]);
+                }
+                mat.Add(l);
+            }
+            return mat;
+            #region input
+            /*
+             List<List<int>> A = new List<List<int>>() { new List<int> { 1, 2, 3 }, new List<int> {  4, 5,6 }
+            , new List<int> { 7,8,9 }, new List<int> { 10,11,12 } };
+            //List<List<int>> A = new List<List<int>>() { new List<int> { 1, 2, 3, 4 }, new List<int> {  5,6,7,8 }
+            //, new List<int> { 9,10,11,12 } };
+            //List<List<int>> B = new List<List<int>>() { new List<int> { 5, 6 }, new List<int> { 7, 8 } };
+            Console.WriteLine("1 2 3");
+            Console.WriteLine("4 5 6");
+            Console.WriteLine("7 8 9");
+            Console.WriteLine("10 11 12");
+            //Console.WriteLine("1 2 3 4");
+            //Console.WriteLine("5 6 7 8");
+            //Console.WriteLine("9 10 11 12");
+            Console.WriteLine();
+            List<List<int>> op = TwoDMatrices.MatrixTranspose(A);
+            foreach (var lstItems in op)
+            {
+                foreach (var item in lstItems)
+                    Console.Write(item + " ");
+                Console.WriteLine();
+            }
+             */
+            #endregion
+        }
+
+        /// <summary>
+        /// Given an integer A, generate a square matrix filled with elements from 1 to A2 in spiral order.
+        /// </summary>
+        /// <param name="A"></param>
+        /// <returns></returns>
+        public static List<List<int>> GenerateSpiralMatrix(int A)
+        {
+            List<List<int>> mat = new List<List<int>>();
+            int l = 0, r = A-1, b = A-1, t = 0, d = 0, i;
+            int count = 1;
+            while (l <= r && t <= b)
+            {
+                List<int> list = new List<int>();
+                if (d == 0)
+                {
+                    for (i = l; i <= r; i++)
+                    {
+                        list.Add(count); count++;
+                    }
+                    d = 1;t++;
+                }
+                else if (d == 1)
+                {
+                    for (i = t; i <= b; i++)
+                    {
+                        list.Add(count); count++;
+                    }
+                    d = 2;r--;
+                }
+                else if (d == 2)
+                {
+                    for (i = r; i >= l; i--)
+                    {
+                        list.Add(count); count++;
+                    }
+                    d = 3;b--;
+                }
+                else if (d == 3)
+                {
+                    for (i = b; i >= t; i--)
+                    {
+                        list.Add(count); count++;
+                    }
+                    d = 0;l++;
+                }
+                mat.Add(list);
+            }
+            return mat;
+        }
+
+        public static void RotateTwoDBy90(List<List<int>> a) 
+        {
+            int N = a.Count;
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j <= i; j++)
+                {
+                    int temp = a[i][j];
+                    a[i][j] = a[j][i];
+                    a[j][i] = temp;
+                }
+            }
+            foreach (var list in a)
+            {
+                int i = 0, j = list.Count - 1;
+                while (i < j)
+                {
+                    int temp = list[i];
+                    list[i] = list[j];
+                    list[j] = temp;
+                    i++; j--;
+                }
+            }
         }
     }
 }

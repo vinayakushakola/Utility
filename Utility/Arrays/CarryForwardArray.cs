@@ -51,14 +51,54 @@ namespace Utility.Arrays
         /// <returns>Number</returns>
         public static int FindLeadersInArray(List<int> list)
         {
-            int leaderCnt = 1;
+            int leaderCnt = list.Count > 0 ? 1 : 0;
             int max = list[list.Count - 1];
-            for (int i = list.Count - 2; i >= 0; i--)
+            for (int  i = list.Count-2; i >= 0; i--)
             {
                 if (list[i] > max)
+                {
+                    max = list[i];
                     leaderCnt++;
+                }
             }
             return leaderCnt;
+        }
+
+        public static int ClosestMinMax(List<int> A)
+        {
+            int min_Ele;
+            int max_Ele;
+            MinMax(A, out min_Ele, out max_Ele);
+
+            int last_Min = -1, last_Max = -1;
+            int len = A.Count;
+            for (int i = 0; i < A.Count; i++)
+            {
+                if (A[i] == min_Ele)
+                {
+                    last_Min = i;
+                }
+                else if (A[i] == max_Ele)
+                {
+                    last_Max = i;
+                }
+                if (last_Max >= 0 && last_Min >= 0)
+                    len = Math.Min(len, last_Max > last_Min ? last_Max - last_Min + 1 : last_Min - last_Max + 1);
+            }
+            return len;
+        }
+
+        public static void MinMax(List<int> arr, out int min_Ele, out int max_Ele)
+        {
+            min_Ele = arr[0];
+            max_Ele = arr[0];
+            for (int i = 1; i < arr.Count; i++)
+            {
+                if (arr[i] > max_Ele)
+                    max_Ele = arr[i];
+                else if (arr[i] < min_Ele)
+                    min_Ele = arr[i];
+            }
         }
 
         /// <summary>
@@ -128,6 +168,25 @@ namespace Utility.Arrays
             #endregion
         }
 
+        public static int FindNoOfTimesBtnPressed(List<int> list)
+        {
+            int cnt = 0;
+            for(int i = 0; i < list.Count; i++)
+            {
+                if (list[i] == 0)
+                {
+                    for (int j = i+1; j < list.Count; j++)
+                    {
+                        if (list[j] == 1)
+                            list[j] = 0;
+                        else
+                            list[j] = 1;
+                    }
+                    cnt++;
+                }
+            }
+            return cnt;
+        }
         /// <summary>
         /// DirectI, Amazon, OLA, Cisco & Visa
         /// Given N bulbs connected to a wire, Every N has two tatest On Off
@@ -138,11 +197,11 @@ namespace Utility.Arrays
         {
             /*
              * look_for=0
-count=0
-for i in range(len(A)):
-if A[i]==look_for:
-count+=1
-look_for=1-look_for print(count)
+                count=0
+                for i in range(len(A)):
+                if A[i]==look_for:
+                count+=1
+                look_for=1-look_for print(count)
              */
 
             int btnPressed = 0, currBtnState;
@@ -172,45 +231,92 @@ look_for=1-look_for print(count)
             //return cnt;
             #endregion
         }
-    }
-class Solution
-    {
-        public int solve(List<int> A)
+
+
+        // HW
+        /// <summary>
+        /// Q1. You are given a string S, and you have to find all the amazing substrings of S.
+        /// Amazing Substring is one that starts with a vowel(a, e, i, o, u, A, E, I, O, U).
+        /// </summary>
+        /// <param name="A"></param>
+        /// <returns></returns>
+        public static int AmazinfSubstring(string A)
         {
-            int min_Ele;
-            int max_Ele;
-            MinMax(A, out min_Ele, out max_Ele);
-    
-            int last_Min = -1, last_Max = -1;
-            int len = A.Count;
-            for (int i = 0; i < A.Count; i++)
+            #region Example 
+            /*
+            Input
+                ABEC
+
+            Output
+                6
+
+            Explanation
+                Amazing substrings of given string are :
+                1. A
+                2. AB
+                3. ABE
+                4. ABEC
+                5. E
+                6. EC
+                here number of substrings are 6 and 6 % 10003 = 6.
+             */
+            #endregion
+            int cnt = 0;
+            string vowel = "AEIOU";
+            A = A.ToUpper();
+            for (int i = 0; i < A.Length; i++)
             {
-                if (A[i] == min_Ele)
+                for (int j = 0; j < vowel.Length; j++)
                 {
-                    last_Min = i;
-                    len = Math.Min(len, last_Max > last_Min ? last_Max - last_Min + 1 : last_Min - last_Max + 1);
-                }
-                else if (A[i] == max_Ele)
-                {
-                    last_Max = i;
-                    len = Math.Min(len, last_Max > last_Min ? last_Max - last_Min + 1 : last_Min - last_Max + 1);
+                    if (A[i] == vowel[j])
+                    {
+                        cnt = (cnt + (A.Length - i)) % 10003;
+                        break;
+                    }
                 }
             }
-            return len;
+            return cnt;
         }
 
-        public static void MinMax(List<int> arr, out int min_Ele, out int max_Ele)
+        /// <summary>
+        /// You are given an integer array A.
+        /// Decide whether it is possible to divide the array into one or more subarrays 
+        /// of even length such that first and last element of all subarrays will be even.
+        /// Return "YES" if it is possible otherwise return "NO" (without quotes).
+        /// </summary>
+        /// <param name="A"></param>
+        /// <returns></returns>
+        public static string EvenSubArrays(List<int> A)
         {
-            min_Ele = arr[0];
-            max_Ele = arr[0];
-            for (int i = 1; i < arr.Count; i++)
+            // input  Console.WriteLine(CarryForwardArray.EvenSubArrays(new List<int>() { 2, 4, 8, 6 }));
+            int N = A.Count;
+            if (N % 2 != 0 || A[0] % 2 != 0 || A[N - 1] % 2 != 0)
+                return "NO";
+            return "YES";
+        }
+
+        /// <summary>
+        /// Given an integer array A containing N distinct integers, you have to find all the leaders in the array A.
+        /// An element is leader if it is strictly greater than all the elements to its right side.
+        /// NOTE:The rightmost element is always a leader.
+        /// </summary>
+        /// <param name="A"></param>
+        /// <returns></returns>
+        public static List<int> LeadersInAnArray(List<int> A)
+        {
+            List<int> leaderLst = new List<int>();
+            int N = A.Count;
+            int max = A[N - 1];
+            leaderLst.Add(max);
+            for (int i = N - 2; i >= 0; i--)
             {
-                if (arr[i] > max_Ele)
-                    max_Ele = arr[i];
-                else if (arr[i] < min_Ele)
-                    min_Ele = arr[i];
+                if (A[i] > max)
+                {
+                    max = A[i];
+                    leaderLst.Add(A[i]);
+                }
             }
+            return leaderLst;
         }
     }
-
 }

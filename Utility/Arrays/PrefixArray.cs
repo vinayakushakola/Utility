@@ -67,5 +67,101 @@ namespace Utility.Arrays
             //return cnt;
             #endregion
         }
+
+        /// <summary>
+        /// Q3. Given an integer array A of size N.
+        /// You can pick B elements from either left or right end of the array A to get maximum sum.
+        /// Find and return this maximum possible sum.
+        /// NOTE: Suppose B = 4 and array A contains 10 elements then
+        /// You can pick first four elements or can pick last four elements or can pick 1 from front and 3 from back etc.you need to return the maximum possible sum of elements you can pick
+        /// </summary>
+        public static int PickFromBothSides(List<int> A, int B)
+        {
+            int cs = 0;
+            int ms = 0;
+            for (int x = 0; x < B; x++)
+            {
+                cs += A[x];
+            }
+            ms = cs;
+            int i = B - 1;
+            int j = A.Count - 1;
+            while (i >= 0)
+            {
+                cs -= A[i--];
+                cs += A[j--];
+                ms = Math.Max(cs, ms);
+            }
+            return ms;
+            #region tle error
+            /*
+            int sum = int.MinValue, currentSum = 0;
+            int n = A.Count;
+            bool isSumInitialized = false;
+            List<long> prefixA = GetPrefixArray(A);
+            for (int i = 0; i <= B; i++)
+            {
+                currentSum = 0;
+                int numOfLastElements = B - i;
+                if (i == 0)
+                {
+                    currentSum += (int)(prefixA[n - 1] - prefixA[n - numOfLastElements - 1]);
+                }
+                else
+                {
+                    currentSum += (int)(prefixA[i - 1] + (prefixA[n - 1] - prefixA[n - numOfLastElements - 1]));
+                }
+                if (!isSumInitialized)
+                {
+                    sum = currentSum;
+                    isSumInitialized = true;
+                }
+                else if (currentSum > sum)
+                {
+                    sum = currentSum;
+                }
+            }
+            return sum;
+            */
+            #endregion
+        }
+
+        public static List<long> GetPrefixArray(List<int> A)
+        {
+            List<long> pfArr = new List<long>();
+            pfArr.Add(A[0]);
+            for (int i = 1; i < A.Count; i++)
+                pfArr.Add(pfArr[i - 1] + A[i]);
+            return pfArr;
+        }
+
+
+        //HW
+        /// <summary>
+        /// Q2. Given an array of integers A, find and return the product array of same size where i'th eement of the product array will be equal to the product of all the elements divided by the i'th element of the array.
+        /// Note: It is always possible to form the product array with integer(32 bit) values.
+        /// </summary>
+        /// <param name="A"></param>
+        /// <returns></returns>
+        public static List<int> ProductArrayPuzzle(List<int> A)
+        {
+            List<int> pfArr = GetPrefixProductArray(A);
+            List<int> productLst = new List<int>();
+            for (int i = 0; i < A.Count; i++)
+            {
+                int product = pfArr[A.Count - 1] / A[i];
+                productLst.Add(product);
+            }
+            return productLst;
+        }
+
+        public static List<int> GetPrefixProductArray(List<int> A)
+        {
+            List<int> pfArr = new List<int>();
+            pfArr.Add(A[0]);
+            for (int i = 1; i < A.Count; i++)
+                pfArr.Add(pfArr[i - 1] * A[i]);
+            return pfArr;
+        }
     }
 }
