@@ -347,49 +347,89 @@ namespace Utility.Arrays
         /// </summary>
         /// <param name="A"></param>
         /// <returns></returns>
-        public static List<List<int>> GenerateSpiralMatrix(int A)
+        public static int[,] GenerateSpiralMatrix(int A)
         {
-            List<List<int>> mat = new List<List<int>>();
-            int l = 0, r = A-1, b = A-1, t = 0, d = 0, i;
+            int[,] res = new int[A,A];
+            int top = 0, left = 0, bottom = A - 1, right = A - 1;
             int count = 1;
-            while (l <= r && t <= b)
+            while (top <= bottom && left <= right)
             {
-                List<int> list = new List<int>();
-                if (d == 0)
+                for (int i = left; i <= right; i++)
                 {
-                    for (i = l; i <= r; i++)
-                    {
-                        list.Add(count); count++;
-                    }
-                    d = 1;t++;
+                    res[top,i] = count;
+                    count++;
                 }
-                else if (d == 1)
+                top++;
+
+                for (int i = top; i <= bottom; i++)
                 {
-                    for (i = t; i <= b; i++)
-                    {
-                        list.Add(count); count++;
-                    }
-                    d = 2;r--;
+                    res[i,right] = count;
+                    count++;
                 }
-                else if (d == 2)
+                right--;
+
+                if (top <= bottom)
                 {
-                    for (i = r; i >= l; i--)
+                    for (int i = right; i >= left; i--)
                     {
-                        list.Add(count); count++;
+                        res[bottom,i] = count;
+                        count++;
                     }
-                    d = 3;b--;
+                    bottom--;
                 }
-                else if (d == 3)
+
+                if (left <= right)
                 {
-                    for (i = b; i >= t; i--)
+                    for (int i = bottom; i >= top; i--)
                     {
-                        list.Add(count); count++;
+                        res[i,left] = count;
+                        count++;
                     }
-                    d = 0;l++;
+                    left++;
                 }
-                mat.Add(list);
             }
-            return mat;
+            return res;
+            //List<List<int>> mat = new List<List<int>>();
+            //int l = 0, r = A-1, b = A-1, t = 0, d = 0, i;
+            //int count = 1;
+            //while (l <= r && t <= b)
+            //{
+            //    List<int> list = new List<int>();
+            //    if (d == 0)
+            //    {
+            //        for (i = l; i <= r; i++)
+            //        {
+            //            list.Add(count); count++;
+            //        }
+            //        d = 1;t++;
+            //    }
+            //    else if (d == 1)
+            //    {
+            //        for (i = t; i <= b; i++)
+            //        {
+            //            list.Add(count); count++;
+            //        }
+            //        d = 2;r--;
+            //    }
+            //    else if (d == 2)
+            //    {
+            //        for (i = r; i >= l; i--)
+            //        {
+            //            list.Add(count); count++;
+            //        }
+            //        d = 3;b--;
+            //    }
+            //    else if (d == 3)
+            //    {
+            //        for (i = b; i >= t; i--)
+            //        {
+            //            list.Add(count); count++;
+            //        }
+            //        d = 0;l++;
+            //    }
+            //    mat.Add(list);
+            //}
+            //return mat;
         }
 
         public static void RotateTwoDBy90(List<List<int>> a) 
