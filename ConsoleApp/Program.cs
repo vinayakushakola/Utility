@@ -12,7 +12,8 @@ namespace ConsoleApp
         {
             Console.WriteLine("================== Utility ===================");
             //StartApp.LoadApp();
-            Console.WriteLine(   ModularArithmetic.solve("8"));
+            Console.WriteLine(   ModularArithmetic.FindMod("143", 2));
+            Console.WriteLine(   ModularArithmetic.FindMod("43535321", 47));
         }
     }
 }

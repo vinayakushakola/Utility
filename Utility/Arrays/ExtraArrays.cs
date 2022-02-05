@@ -202,6 +202,11 @@ namespace Utility.Arrays
         }
 
 
+        /// <summary>Gets the majority element.</summary>
+        /// <param name="A">a.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public static int GetMajorityElement(List<int> A)
         {
             int majorityEle = A[0];
