@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Utility.Arrays;
 using Utility.BitManipulation;
 using Utility.ModularArithmetic;
-
+using Utility.DSA.Sorting;
 namespace ConsoleApp
 {
     class Program
@@ -12,8 +12,6 @@ namespace ConsoleApp
         {
             Console.WriteLine("================== Utility ===================");
             //StartApp.LoadApp();
-            Console.WriteLine(   ModularArithmetic.FindMod("143", 2));
-            Console.WriteLine(   ModularArithmetic.FindMod("43535321", 47));
         }
     }
 }

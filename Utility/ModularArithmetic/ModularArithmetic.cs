@@ -8,7 +8,7 @@ namespace Utility.ModularArithmetic
     {
         /// <summary>
         /// i/p: ABCD or AA or AB
-        /// Given a column title as appears in an Excel sheet, return its corresponding column number.
+        /// AQ1. Given a column title as appears in an Excel sheet, return its corresponding column number.
         /// </summary>
         /// <param name="A"></param>
         /// <returns></returns>
@@ -22,10 +22,9 @@ namespace Utility.ModularArithmetic
             return ans;
         }
 
-
         /// <summary>
         /// A, B and Modulo
-        /// Given two integers A and B, find the greatest possible positive M, such that A % M = B % M.
+        /// AQ2. Given two integers A and B, find the greatest possible positive M, such that A % M = B % M.
         /// </summary>
         /// <param name="A"></param>
         /// <param name="B"></param>
@@ -71,6 +70,83 @@ namespace Utility.ModularArithmetic
                 r = (r * 10) % B;
             }
             return (int)ans % B;
+        }
+
+        // ==============================================        
+        /// <summary>
+        /// HQ2. Concatenate Three Numbers
+        /// Given three 2-digit integers, A, B and C, find out the minimum number that can be obtained 
+        /// by concatenating them in any order.
+        /// Return the minimum result that can be obtained.
+        /// </summary>
+        /// <param name="A">number</param>
+        /// <param name="B">number</param>
+        /// <param name="C">number</param>
+        /// <returns></returns>
+        public static int ConcatenateMinNumber(int A, int B, int C)
+        {
+            string ans = "";
+            if (A <= B && A <= C)
+            {
+                ans += A.ToString();
+                if (B <= C)
+                    ans += B.ToString() + C.ToString();
+                else
+                    ans += C.ToString() + B.ToString();
+            }
+            else if (B < A && B < C)
+            {
+                ans += B.ToString();
+                if (A <= C)
+                    ans += A.ToString() + C.ToString();
+                else    
+                    ans += C.ToString() + A.ToString();
+            }
+            else
+            {
+                ans += C.ToString();
+                if (A <= B)
+                    ans += A.ToString() + B.ToString();
+                else
+                    ans += B.ToString() + A.ToString();
+            }
+            return int.Parse(ans);
+        }
+
+        /// <summary>
+        /// HQ4. Leap year? - III
+        /// Given an integer A representing an year, Return 1 if it is a leap year else return 0.
+        /// A year is leap year if the following conditions are satisfied:
+        /// Year is multiple of 400.
+        /// Year is multiple of 4 and not multiple of 100.
+        /// </summary>
+        /// <param name="Year">The year.</param>
+        /// <returns></returns>
+        public static int LeapYear(int Year)
+        {
+            if (Year % 4 == 0 && Year % 100 != 0 || Year % 400 == 0)
+                return 1;
+            return 0;
+        }
+
+        /// <summary>
+        /// HQ5. Least Common Multiple
+        /// You are given two non-negative integers A and B, find the value of Least Common Multiple (LCM) of A and B.
+        /// LCM of two integers is the smallest positive integer that is divisible by both.
+        /// </summary>
+        /// <param name="A">a.</param>
+        /// <param name="B">The b.</param>
+        /// <returns></returns>
+        public static int LeastCommonMultiple(int A, int B)
+        {
+            return (A / GCD(A, B)) * B;
+        }
+
+        public static int GCD(int a, int b)
+        {
+            if (a == 0)
+                return b;
+            return GCD(b % a, a);
         }
     }
 }
