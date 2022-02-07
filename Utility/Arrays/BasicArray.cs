@@ -6,6 +6,35 @@ namespace Utility.Arrays
 {
     public class BasicArray
     {
+        /// <summary>
+        /// Given N array elements, count the no. of elements having atleast 1 element greater than itself
+        /// </summary>
+        /// <param name="arr">arr</param>
+        /// <returns>returns the count of element which is less than max</returns>
+        public static int FindCntOfEleLessThanMax(int[] arr)
+        {
+            #region Input 
+            //Console.WriteLine("Count the no. of elements having atleast 1 element grater than itself {0}",
+            //    BasicArray.FindCntOfEleLessThanMax(new int[] { 3, -2, 6, 8, 4, 8, 5 }));
+            //Console.WriteLine("Count the no. of elements having atleast 1 element grater than itself {0}",
+            //    BasicArray.FindCntOfEleLessThanMax(new int[] { 2, 5, 1, 4, 8, 0, 8, 1, 3, 8 }));
+            #endregion
+            // TC - O(N)
+            // SC - O(1)
+            int max_Ele = arr[0], count = 1, N = arr.Length;
+            for (int i = 1; i < N; i++)
+            {
+                if (arr[i] > max_Ele)
+                {
+                    max_Ele = arr[i];
+                    count = 0;
+                }
+                if (arr[i] == max_Ele)
+                    count++;
+            }
+            return N - count;
+        }
+
         public static int FindMaxElementCount(int[] arr)
         {
             // TC - O(N)
@@ -23,6 +52,28 @@ namespace Utility.Arrays
                     count++;
             }
             return count;
+        }
+
+        public static bool FindPairEqualk(int[] arr, int k)
+        {
+            // TC - O(N^2) | SC - O(1)
+            //int N = arr.Length;
+            //for(int i = 0; i < N; i++)
+            //{
+            //    for (int j = i + 1; j < N; j++)
+            //    {
+            //        if (arr[i] + arr[j] == k)
+            //            return true;
+            //    }
+            //}
+            //return false;
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+            int N = arr.Length;
+            for (int i = 0; i < N; i++)
+            {
+                dict[arr[i]] = 0;
+            }
+            return false;
         }
 
         public static int[] ReverseArray(int[] arr)
