@@ -24,5 +24,70 @@ namespace Utility.Strings
             }
             return new string(chArr);
         }
+
+        /// <summary>
+        /// Convert string to lower case letters
+        /// </summary>
+        /// <param name="A">a</param>
+        /// <returns></returns>
+        public List<char> to_lower(List<char> A)
+        {
+            for (int i = 0; i < A.Count; i++)
+            {
+                if (A[i] < 'a' && (A[i] >= 'A' && A[i] <= 'Z'))
+                    A[i] = (char)(A[i] + 'a' - 'A');
+            }
+            return A;
+        }
+
+        /// <summary>
+        /// Convert given string to the upper case letters.
+        /// </summary>
+        /// <param name="A">a</param>
+        /// <returns></returns>
+        public List<char> to_upper(List<char> A)
+        {
+            int N = A.Count;
+            for (int i = 0; i < N; i++)
+            {
+                if (A[i] > 'Z' && (A[i] >= 'a' && A[i] <= 'z'))
+                    A[i] = (char)(A[i] - ('a' - 'A'));
+            }
+            return A;
+        }
+
+        /// <summary>
+        /// Determines whether [is alpha numeric number] [the specified A]
+        /// </summary>
+        /// <param name="A">a.</param>
+        /// <returns></returns>
+        public static int IsAlphaNumericNum(List<char> A)
+        {
+
+            for (int i = 0; i < A.Count; i++)
+            {
+                if (!(A[i] >= 'A' && A[i] <= 'Z'
+                    || A[i] >= 'a' && A[i] <= 'z'
+                    || A[i] >= '0' && A[i] <= '9'))
+                    return 0;
+            }
+            return 1;
+        }
+
+        /// <summary>
+        /// Determines whether [is only alphabets] [the specified A]
+        /// </summary>
+        /// <param name="A">a.</param>
+        /// <returns></returns>
+        public int IsOnlyAlphabets(List<char> A)
+        {
+            for (int i = 0; i < A.Count; i++)
+            {
+                if (!(A[i] >= 'A' && A[i] <= 'Z'
+                || A[i] >= 'a' && A[i] <= 'z'))
+                    return 0;
+            }
+            return 1;
+        }
     }
 }
