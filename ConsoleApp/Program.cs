@@ -13,7 +13,7 @@ namespace ConsoleApp
         {
             Console.WriteLine("================== Utility ===================");
             //StartApp.LoadApp();
-            Strings.IsAlphaNumericNum(new List<char> { '@','S', 'c', 'a', 'l', 'e', 'r', '#', '2', '0', '2', '0' });
+            Console.WriteLine("Occurence Count = "+ Strings.CountOccurrences("aobob"));
         }
     }
 }
