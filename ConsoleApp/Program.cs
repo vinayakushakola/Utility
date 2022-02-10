@@ -14,6 +14,7 @@ namespace ConsoleApp
             Console.WriteLine("================== Utility ===================");
             //StartApp.LoadApp();
             Console.WriteLine("Occurence Count = "+ Strings.CountOccurrences("aobob"));
+            Console.WriteLine("O/P = "+ Strings.StringOperations("AbcaZeoB"));
         }
     }
 }

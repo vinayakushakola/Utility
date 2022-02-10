@@ -1,0 +1,44 @@
+Basic Git Commands 
+For the below mention steps the Project Name & Repository Name should be same
+
+Step 1: Create 1 Repository in your github
+		Select Add ReadMe, & gitignore -> visual studio
+Step 2: Create Project in Visual Studio
+step 3: Open your project folder where the .sln file is present then open your git bas here
+step 4: Now git status - For checking the status of the repository
+step 5: git init       - Make your folder/project as git repository
+step 6: git remote add origin "github repository link"
+step 7: git branch -M main
+step 8: git pull origin main
+step 8: Go to your visual studio write one welcome message code in your main method & check is it working or not
+step 9: git add .
+step 10: git commit -m "commit message"
+step 11: git push origin main
+
+All the above mention part is before writing your actual code for the use cases
+Now the main part is starting which is writing the code for use cases 
+
+Ex: Employee Wage Computation Problem
+	UC1 - Emplyee Attendance
+	UC2 - Calculate Daily Wage
+	UC3 - Part time
+	UC4 - Switch Case
+I am taking the above mention example to write my git commands
+
+step 12: git checkout -b UC1_EmployeeAttendance
+step 13: Write your code for use case 1 & test it. If it is working fine then you are ready to go
+step 14: Now git add . -> git commit -> git push origin "UC1_EmployeeAttendance"
+step 15: git checkout main
+step 16: git merge UC1_EmployeeAttendance
+step 17: git push origin main
+
+step 18: git checkout -b "UC2_EmpDailyWage"
+step 19: Write your code for use case 2 & run it.
+step 20: Now git add . -> git commit -> git push origin UC2_EmpDailyWage
+step 21: git checkout main
+step 22: git merge UC2_EmpDailyWage
+
+step 23: Write your code for use case 3 & run it.
+step 24: Repeat steps from step 12 to step 17 for every new case
+
+

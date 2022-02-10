@@ -109,6 +109,21 @@ namespace Utility.Strings
             }
             return cnt;
         }
+
+        public static string StringOperations(string A)
+        {
+            StringBuilder strA = new StringBuilder();
+            string vowels = "aeiou";
+            for (int i = 0; i < A.Length; i++)
+            {
+                if (vowels.Contains(A[i]))
+                    strA.Append('#');
+                else if (!(A[i] >= 'A' && A[i] <= 'Z'))
+                    strA.Append(A[i]);
+
+            }
+            return strA + strA.ToString();
+        }
     }
 }
 
