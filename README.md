@@ -1,8 +1,11 @@
 # Utility 
-  Problem Solving Questions with Answers
-    1. Arrays
-      a. Basic Array
-      b. Prefix Array
-      c. CarryForward Array
-      d. Sub Array
-      e. 2DMatrices
+  ##Problem Solving Questions with Answers
+    ###1. Arrays
+      - Basic Array
+      - Prefix Array
+      - CarryForward Array
+      - Sub Array
+      - 2DMatrices
+	###2. Bit manipulation
+	###3. Strings
+	###4. Hashing
