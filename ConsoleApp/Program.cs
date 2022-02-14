@@ -16,7 +16,6 @@ namespace ConsoleApp
         {
             Console.WriteLine("================== Utility ===================");
             //StartApp.LoadApp();
-            var result = Strings.LongestPalindrome("abb");
         }
     }
 }
