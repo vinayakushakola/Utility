@@ -57,5 +57,18 @@ namespace Utility.Arrays
             }
             return 1;
         }
+
+        //HQ2 - Elements Removal
+        public static int ElementsRemoval(List<int> A)
+        {
+            int cost = 0;
+            A.Sort();
+            for (int i = A.Count - 1; i > 0; i--)
+            {
+                cost = cost + A[i] + A[i - 1];
+            }
+            HashSet<int> hashSet = new HashSet<int>();
+            return cost;
+        }
     }
 }
