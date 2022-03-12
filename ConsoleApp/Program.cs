@@ -12,6 +12,7 @@ using Utility.Sorting;
 using Utility.DSA.LinkedList;
 using Utility.DSA.Queue;
 using System.Collections;
+using Utility.DSA.Trees;
 
 namespace ConsoleApp
 {
@@ -21,6 +22,8 @@ namespace ConsoleApp
         {
             Console.WriteLine("================== Utility ===================");
             //StartApp.LoadApp();
+            int[] arr = { 3,-2,4,-1,2,6 };
+            int count = ImpArray.IndexKPresent(arr);
         }
     }
 }

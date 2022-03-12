@@ -3,13 +3,13 @@
     public class TreeNode
     {
         public int data;
-        public TreeNode leftTree;
-        public TreeNode rightTree;
+        public TreeNode left;
+        public TreeNode right;
         public TreeNode(int value)
         {
             data = value;
-            leftTree = null;
-            rightTree = null;
+            left = null;
+            right = null;
         }
     }
 }

@@ -6,6 +6,43 @@ namespace Utility.Arrays
 {
     public class PrefixArray
     {
+        // SQ - Equilibrium Index -> return the count of equilibrium index 
+        public static int EqilibriumIndex(List<int> list)
+        {
+            #region Parameter Input
+            //Console.WriteLine("Count = " + PrefixArray.EqilibriumIndex(new List<int> { -7, 1, 5, 2, -4, 3, 0 }));
+            //Console.WriteLine("Count = " + PrefixArray.EqilibriumIndex(new List<int> { 3, -1, 2, -1, 1, 2, 1 }));
+            #endregion
+            #region Brute Force: TC - O(N^2) | SC - O(1)
+            //int sizeOfList = list.Count, count = 0;
+            //for (int i = 0; i < sizeOfList; i++)
+            //{
+            //    int leftSum = 0, rightSum = 0;
+            //    for (int j = 0; j < sizeOfList; j++)
+            //    {
+            //        if (j < i)
+            //            leftSum += list[j];
+            //        else if (j > i)
+            //            rightSum += list[j];
+            //    }
+            //    if (leftSum == rightSum) count++;
+
+            //}
+            //return count;
+            #endregion
+            #region Prefix Array Appraoch: TC - O(N) | SC - O (N)
+            List<int> prefixSumArr = GetPrefixArray(list);
+            int sizeOfList = prefixSumArr.Count, leftSum = 0, rightSum = 0, count = 0;
+            for (int i = 0; i < sizeOfList; i++)
+            {
+                leftSum = i == 0 ? 0 : prefixSumArr[i - 1];
+                rightSum = prefixSumArr[sizeOfList - 1] - prefixSumArr[i];
+                if (leftSum == rightSum) count++;
+            }
+            return count;
+            #endregion
+        }
+
         /// <summary>
         /// 4. You are given an integer array A of length N.
         /// You are also given a 2D integer array B with dimensions M x 2, where each row denotes a[L, R] query.
@@ -126,9 +163,9 @@ namespace Utility.Arrays
             #endregion
         }
 
-        public static List<long> GetPrefixArray(List<int> A)
+        public static List<int> GetPrefixArray(List<int> A)
         {
-            List<long> pfArr = new List<long>();
+            List<int> pfArr = new List<int>();
             pfArr.Add(A[0]);
             for (int i = 1; i < A.Count; i++)
                 pfArr.Add(pfArr[i - 1] + A[i]);

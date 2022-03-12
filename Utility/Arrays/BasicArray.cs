@@ -1,16 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Utility.Arrays
 {
     public class BasicArray
     {
-        /// <summary>
-        /// Given N array elements, count the no. of elements having atleast 1 element greater than itself
-        /// </summary>
-        /// <param name="arr">arr</param>
-        /// <returns>returns the count of element which is less than max</returns>
+        // Given N array elements, count the no of elements having atleast 1 element greater than itself
+        public static int GreaterThanItself(int[] arr)
+        {
+            #region Input
+            /*
+             int[] arr = { 3,4,1,2,7,8,5,9 };
+             var output = BasicArray.FindCntOfEleLessThanMax(arr);
+             Console.WriteLine("Output: ");
+             Console.WriteLine($"Count = {output}");
+             */
+            #endregion
+            // TC - O(n) | SC - O(1)
+            int sizeOfArr = arr.Length; // 8
+            int maxEle = arr[0], count = 0; // maxEle = 3
+            for (int i = 1; i < sizeOfArr; i++) // i=1|2|3|4|5|6|7
+            {
+                if (maxEle < arr[i]) // 3<=4| 4<=1| 4<=2| 4<=7| 7<=8| 8<=5| 8<=9
+                {
+                    maxEle = arr[i]; // maxEle = 4| 7|8|9
+                    count++;         // count  = 1| 4|5|7
+                }
+                else if (maxEle != arr[i])
+                    count++;         // count = 3|6
+            }
+            return count; // 7
+        }
+
+        // Given N array elements, count the no. of elements having atleast 1 element greater than itself
         public static int FindCntOfEleLessThanMax(int[] arr)
         {
             #region Input 
@@ -22,17 +44,29 @@ namespace Utility.Arrays
             // TC - O(N)
             // SC - O(1)
             int max_Ele = arr[0], count = 1, N = arr.Length;
-            for (int i = 1; i < N; i++)
+            for (int i = 1; i < N; i++) 
             {
-                if (arr[i] > max_Ele)
+                if (arr[i] > max_Ele) 
                 {
                     max_Ele = arr[i];
-                    count = 0;
+                    count++;
                 }
-                if (arr[i] == max_Ele)
+                else if (arr[i] == max_Ele)
                     count++;
             }
             return N - count;
+            //int max_Ele = arr[0], count = 1, N = arr.Length;
+            //for (int i = 1; i < N; i++)
+            //{
+            //    if (arr[i] > max_Ele)
+            //    {
+            //        max_Ele = arr[i];
+            //        count = 0;
+            //    }
+            //    if (arr[i] == max_Ele)
+            //        count++;
+            //}
+            //return N - count;
         }
 
         public static int FindMaxElementCount(int[] arr)
@@ -46,9 +80,9 @@ namespace Utility.Arrays
                 if (arr[i] > max_Ele)
                 {
                     max_Ele = arr[i];
-                    count = 0;
+                    count++;
                 }
-                if (arr[i] == max_Ele)
+                else if (arr[i] == max_Ele)
                     count++;
             }
             return count;
